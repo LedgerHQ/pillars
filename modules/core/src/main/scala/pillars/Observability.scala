@@ -45,7 +45,7 @@ object Observability:
         Observability(Tracer.noop[F], Meter.noop[F], EndpointInterceptor.noop[F]).pure[F]
 
     def init[F[_]: LiftIO: Async: Parallel: Console](appInfo: AppInfo, config: Config): Resource[F, Observability[F]] =
-        if config.enabled then
+        if config.enabled && (config.traces.enabled || config.metrics.enabled) then
             for
                 otel4s       <- OpenTelemetrySdk.autoConfigured[F]: builder =>
                                     builder
@@ -60,8 +60,12 @@ object Observability:
                                                 )
                                             resource.mergeUnsafe(configured)
                 sdk           = otel4s.sdk
-                tracer       <- sdk.tracerProvider.get(config.traces.name.getOrElse(config.serviceName)).toResource
-                meter        <- sdk.meterProvider.get(config.metrics.name.getOrElse(config.serviceName)).toResource
+                tracer       <- (if config.traces.enabled then
+                                     sdk.tracerProvider.get(config.traces.name.getOrElse(config.serviceName))
+                                 else Tracer.noop[F].pure[F]).toResource
+                meter        <- (if config.metrics.enabled then
+                                     sdk.meterProvider.get(config.metrics.name.getOrElse(config.serviceName))
+                                 else Meter.noop[F].pure[F]).toResource
                 tapirMetrics <- Metrics.init[F](meter).toResource
             yield Observability(tracer, meter, tapirMetrics.metricsInterceptor())
         else
