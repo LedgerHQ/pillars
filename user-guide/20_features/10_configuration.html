@@ -223,6 +223,8 @@ admin:
 observability:
   enabled: true
   service-name: bookstore
+  custom-attributes:
+    datacenter: ${DATACENTER}
   metrics:
     enabled: true
   traces:
@@ -479,6 +481,8 @@ When using the <code>pillars.IOApp</code> trait, the path to this file must be g
 <pre class="prettyprint highlight"><code data-lang="yaml">observability:
   enabled: true
   service-name: bookstore
+  custom-attributes:
+    datacenter: ${DATACENTER}
   metrics:
     enabled: true
   traces:
@@ -848,7 +852,7 @@ object UsersConfig:
 
 
         <li>
-            <a href="https://github.com/FunktionalIO/pillars/issues/new?title=Docs%3A+Feedback+for+%27Configuration%27&body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23page:%20https://github.com/FunktionalIO/pillars/edit/main/docs/user-guide/20_features/10_configuration.adoc%0A%23branch:%20-" target="_blank">
+            <a href="https://github.com/FunktionalIO/pillars/issues/new?title=Docs%3A+Feedback+for+%27Configuration%27&body=%0A%0A%5BEnter%20feedback%20here%5D%0A%0A%0A---%0A%23page:%20https://github.com/FunktionalIO/pillars/edit/main/docs/user-guide/20_features/10_configuration.adoc%0A%23branch:%20main" target="_blank">
                 <i class="fa fa-github"></i> Create an issue
             </a>
         </li>
