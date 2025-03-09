@@ -17,7 +17,7 @@
     <meta content="Pillars" itemprop="name">
     <meta content="Build your backend service in Scala 3 the easy way" itemprop="description">
     <meta content="summary" name="twitter:card">
-    <meta content="@rlemaitre" name="twitter:creator">
+    <meta content="@rlemaitre.com" name="twitter:creator">
     <meta content="Pillars" name="twitter:title">
     <meta content="Build your backend service in Scala 3 the easy way" name="twitter:description">
     <meta property="og:url" content="https://pillars.dev/" />
@@ -54,7 +54,7 @@
         <li class="menu__item"><a href="contribute/10_contributing.html" class="link link--dark"><i class="fa fa-book"></i> Contribute</a></li>
 
         <li class="menu__item"><a href="api/" class="link link--dark"><i class="fa fa-cogs"></i> API</a></li>
-        <li class="menu__item"><a href="https://github.com/rlemaitre/pillars/" class="link link--dark"><i class="fa fa-github"></i> Github</a></li>
+        <li class="menu__item"><a href="https://github.com/FunktionalIO/pillars/" class="link link--dark"><i class="fa fa-github"></i> Github</a></li>
         <li class="menu__item">
             <form action="search.html">
             <input aria-label="Search this site…" autocomplete="off" class="form-control td-search-input"
@@ -109,33 +109,33 @@ end app
                 <li class="tab" data-tab="maven">Maven</li>
             </ul>
             <pre class="code tab__pane active sbt">
-                <code class="highlight language-scala">libraryDependencies ++= Seq("com.rlemaitre" %% "pillars-core" % "0.4.5")</code>
+                <code class="highlight language-scala">libraryDependencies ++= Seq("io.funktional" %% "pillars-core" % "0.5.0")</code>
             </pre>
             <pre class="code tab__pane mill">
-                <code class="highlight language-scala">ivy"com.rlemaitre::pillars-core:0.4.5"</code>
+                <code class="highlight language-scala">ivy"io.funktional::pillars-core:0.5.0"</code>
             </pre>
             <pre class="code tab__pane scala-cli">
-                <code class="highlight language-scala">//> using dep com.rlemaitre::pillars-core:0.4.5</code>
+                <code class="highlight language-scala">//> using dep io.funktional::pillars-core:0.5.0</code>
             </pre>
             <pre class="code tab__pane pants">
                 <code class="highlight language-scala">
 scala_artifact(
-    group="com.rlemaitre",
+    group="io.funktional",
     artifact="pillars-core",
-    version="0.4.5",
+    version="0.5.0",
     packages=["pillars.**"],
 )
                 </code>
             </pre>
             <pre class="code tab__pane gradle">
-                <code class="highlight language-gradle">implementation 'com.rlemaitre:pillars-core:0.4.5'</code>
+                <code class="highlight language-gradle">implementation 'io.funktional:pillars-core:0.5.0'</code>
             </pre>
             <pre class="code tab__pane maven">
                 <code class="highlight language-xml">
 &lt;dependency>
-    &lt;groupId>com.rlemaitre&lt;/groupId>
+    &lt;groupId>io.funktional&lt;/groupId>
     &lt;artifactId>pillars-core&lt;/artifactId>
-    &lt;version>0.4.5&lt;/version>
+    &lt;version>0.5.0&lt;/version>
 &lt;/dependency>
                 </code>
             </pre>
