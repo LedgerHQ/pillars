@@ -15,6 +15,9 @@ ThisBuild / autoAPIMappings := true
 ThisBuild / Compile / doc / sources                := Seq.empty
 ThisBuild / Compile / packageDoc / publishArtifact := false
 
+ThisBuild / versionScheme   := Some("semver-spec")
+ThisBuild / dynverSeparator := "-"
+
 lazy val sharedSettings = Seq(
   organizationName := "Funktional.io",
   libraryDependencies ++= Seq("org.scalameta" %% "munit" % versions.munit.core % Test),
