@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.5.2-RC1] - 2025-04-29
+### :boom: BREAKING CHANGES
+- due to [`c56f3b9`](https://github.com/LedgerHQ/pillars/commit/c56f3b9c971a6d425a6dbd60cbefccbc4a0ef653) - migrate from tagless final to IO-based implementation *(PR [#225](https://github.com/LedgerHQ/pillars/pull/225) by [@rlemaitre](https://github.com/rlemaitre))*:
+
+  This changes the fundamental abstraction approach from  
+  tagless final (F[_]) to concrete IO type, requiring API consumers to adapt  
+  their code accordingly.
+
+
+### :sparkles: New Features
+- [`c56f3b9`](https://github.com/LedgerHQ/pillars/commit/c56f3b9c971a6d425a6dbd60cbefccbc4a0ef653) - migrate from tagless final to IO-based implementation *(PR [#225](https://github.com/LedgerHQ/pillars/pull/225) by [@rlemaitre](https://github.com/rlemaitre))*
+- [`e097b16`](https://github.com/LedgerHQ/pillars/commit/e097b16a978b9626de0cc4e7b07477c1ddcc5877) - **core**: improve error handling and type safety *(commit by [@rlemaitre](https://github.com/rlemaitre))*
+- [`d52934b`](https://github.com/LedgerHQ/pillars/commit/d52934ba63907aef2cec04812e57b4ddc88f8568) - make HTTP client metrics optional *(commit by [@jnicoulaud-ledger](https://github.com/jnicoulaud-ledger))*
+
+### :wrench: Chores
+- [`be54864`](https://github.com/LedgerHQ/pillars/commit/be54864887b21efa5548fe30b69c63d5315cc7a1) - Patches/Minor updates *(PR [#222](https://github.com/LedgerHQ/pillars/pull/222) by [@scala-steward](https://github.com/scala-steward))*
+- [`1055ca0`](https://github.com/LedgerHQ/pillars/commit/1055ca0619bdc7cb126d178cf7918dbad8e752c5) - **deps**: update otel4s to 0.12.0 *(commit by [@rlemaitre](https://github.com/rlemaitre))*
+- [`56e9790`](https://github.com/LedgerHQ/pillars/commit/56e9790a0233eec124a2a225483fb4f3d4455360) - **deps**: update munit-cats-effect to 2.1.0 *(commit by [@rlemaitre](https://github.com/rlemaitre))*
+- [`6245b6f`](https://github.com/LedgerHQ/pillars/commit/6245b6f00c68a9f90bfdd1826d2b5be81e448a5e) - Update doobie-core, doobie-hikari from 1.0.0-RC8 to 1.0.0-RC9 *(commit by [@scala-steward](https://github.com/scala-steward))*
+- [`3ba4b5e`](https://github.com/LedgerHQ/pillars/commit/3ba4b5e98bdadc58acb5b071f7a788d6743a7dfe) - make skunk tracing optional (off by default) *(commit by [@jnicoulaud-ledger](https://github.com/jnicoulaud-ledger))*
+
+
 ## [v0.5.1] - 2025-03-19
 ### :sparkles: New Features
 - [`f409b88`](https://github.com/FunktionalIO/pillars/commit/f409b88cb3c4fa285c9c6cbf32818999a867d1d9) - upgrade source to scala 3.6 syntax *(commit by [@rlemaitre](https://github.com/rlemaitre))*
@@ -396,3 +418,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.4.5]: https://github.com/FunktionalIO/pillars/compare/v0.4.4...v0.4.5
 [v0.5.0]: https://github.com/FunktionalIO/pillars/compare/v0.4.5...v0.5.0
 [v0.5.1]: https://github.com/FunktionalIO/pillars/compare/v0.5.0...v0.5.1
+[v0.5.2-RC1]: https://github.com/LedgerHQ/pillars/compare/v0.5.1...v0.5.2-RC1
