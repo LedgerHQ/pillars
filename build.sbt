@@ -22,6 +22,8 @@ ThisBuild / tlCiMimaBinaryIssueCheck := true
 ThisBuild / tlCiDependencyGraphJob   := true
 ThisBuild / autoAPIMappings          := true
 
+ThisBuild / gpgWarnOnFailure := true
+
 lazy val sharedSettings = Seq(
   organizationName := "Funktional.io",
   libraryDependencies ++= Seq("org.scalameta" %% "munit" % versions.munit.core % Test),
