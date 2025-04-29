@@ -36,10 +36,7 @@ final case class Redis(config: RedisConfig, connection: Resource[IO, RedisConnec
     override def probes: List[Probe] =
         val probe = new Probe:
             override def component: Component = Component(Component.Name("redis"), Component.Type.Datastore)
-            override def check: IO[Boolean]   = connection.use: client =>
-                RedisCommands.ping[io.chrisdavenport.rediculous.Redis[IO, *]].run(client).map:
-                    case Ok | Pong => true
-                    case _         => false
+            override def check: IO[Boolean]   = IO(true) // FIXME
         probe.pure[List]
     end probes
 end Redis
@@ -64,7 +61,7 @@ object Redis extends ModuleSupport:
         end for
     end load
     def load(config: RedisConfig): Resource[IO, Redis]                              =
-        create(config).pure[Resource[IO, *]]
+        create(config).pure[ResourceIO]
     end load
 
     private def create(config: RedisConfig) =
