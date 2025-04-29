@@ -12,6 +12,9 @@ ThisBuild / scalaVersion := versions.scala // the default Scala
 
 ThisBuild / autoAPIMappings := true
 
+ThisBuild / Compile / doc / sources                := Seq.empty
+ThisBuild / Compile / packageDoc / publishArtifact := false
+
 lazy val sharedSettings = Seq(
   organizationName := "Funktional.io",
   libraryDependencies ++= Seq("org.scalameta" %% "munit" % versions.munit.core % Test),
