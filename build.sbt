@@ -22,7 +22,8 @@ ThisBuild / tlCiMimaBinaryIssueCheck := true
 ThisBuild / tlCiDependencyGraphJob   := true
 ThisBuild / autoAPIMappings          := true
 
-ThisBuild / gpgWarnOnFailure := true
+ThisBuild / gpgWarnOnFailure           := true
+ThisBuild / publish / gpgWarnOnFailure := true
 
 lazy val sharedSettings = Seq(
   organizationName := "Funktional.io",
