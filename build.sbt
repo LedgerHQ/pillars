@@ -1,7 +1,5 @@
 import sbt.ThisBuild
 
-ThisBuild / tlBaseVersion := "0.5" // your current series x.y
-
 ThisBuild / resolvers += Resolver.githubPackages("LedgerHQ")
 ThisBuild / githubOwner      := "LedgerHQ"
 ThisBuild / githubRepository := "pillars"
@@ -9,45 +7,16 @@ ThisBuild / organization     := "co.ledger"
 ThisBuild / homepage         := Some(url("https://pillars.dev"))
 ThisBuild / startYear        := Some(2023)
 ThisBuild / licenses         := Seq("EPL-2.0" -> url("https://www.eclipse.org/legal/epl-2.0/"))
-ThisBuild / developers ++= List(
-  // your GitHub handle and name
-  tlGitHubDev("rlemaitre", "Raphaël Lemaitre")
-)
 
 ThisBuild / scalaVersion := versions.scala // the default Scala
 
-ThisBuild / tlCiHeaderCheck          := true
-ThisBuild / tlCiScalafmtCheck        := true
-ThisBuild / tlCiMimaBinaryIssueCheck := true
-ThisBuild / tlCiDependencyGraphJob   := true
-ThisBuild / autoAPIMappings          := true
-
-ThisBuild / gpgWarnOnFailure           := true
-ThisBuild / publish / gpgWarnOnFailure := true
-gpgWarnOnFailure                       := true
-publish / gpgWarnOnFailure             := true
-gpgWarnOnFailure                       := true
-publish / gpgWarnOnFailure             := true
+ThisBuild / autoAPIMappings := true
 
 lazy val sharedSettings = Seq(
-  organizationName           := "Funktional.io",
+  organizationName := "Funktional.io",
   libraryDependencies ++= Seq("org.scalameta" %% "munit" % versions.munit.core % Test),
-  scalaVersion               := versions.scala,
-  // Headers
-  headerMappings             := headerMappings.value + (HeaderFileType.scala -> HeaderCommentStyle.cppStyleLineComment),
-  headerLicense              := Some(
-    HeaderLicense.Custom(
-      """|Copyright (c) 2024-2024 by Raphaël Lemaitre and Contributors
-       |This software is licensed under the Eclipse Public License v2.0 (EPL-2.0).
-       |For more information see LICENSE or https://opensource.org/license/epl-2-0
-       |""".stripMargin
-    )
-  ),
-  gpgWarnOnFailure           := true,
-  publish / gpgWarnOnFailure := true
+  scalaVersion     := versions.scala
 )
-
-enablePlugins(ScalaUnidocPlugin)
 
 outputStrategy := Some(StdoutOutput)
 
@@ -68,22 +37,19 @@ def module(
     pkg: String,
     dependencies: Seq[ModuleID] = Seq.empty,
     desc: String = ""
-)                   =
+)             =
     Project(module, file(s"modules/$module"))
         .enablePlugins(BuildInfoPlugin)
         .settings(sharedSettings)
         .settings(
-          name                   := s"pillars-$module",
-          description            := desc,
-          scalaVersion           := versions.scala,
-          scalafmtOnCompile      := true,
+          name             := s"pillars-$module",
+          description      := desc,
+          scalaVersion     := versions.scala,
           libraryDependencies ++= dependencies,
-          buildInfoKeys          := Seq[BuildInfoKey](name, version, description),
-          buildInfoOptions       := Seq(BuildInfoOption.Traits("pillars.BuildInfo")),
-          buildInfoPackage       := s"$pkg.build",
-          tlMimaPreviousVersions := Set(),
-          libraryDependencySchemes ++= libDependencySchemes,
-          unusedCompileDependenciesFilter -= moduleFilter("org.typelevel", "scalac-compat-annotation")
+          buildInfoKeys    := Seq[BuildInfoKey](name, version, description),
+          buildInfoOptions := Seq(BuildInfoOption.Traits("pillars.BuildInfo")),
+          buildInfoPackage := s"$pkg.build",
+          libraryDependencySchemes ++= libDependencySchemes
         )
 
 lazy val core = module(
@@ -222,28 +188,24 @@ lazy val example = Project("pillars-example", file("modules/example"))
     .enablePlugins(BuildInfoPlugin) // //<1>
     .settings(sharedSettings)
     .settings(
-      name                   := "pillars-example",                                            // //<2>
-      description            := "pillars-example is an example of application using pillars", // //<3>
+      name             := "pillars-example",                                            // //<2>
+      description      := "pillars-example is an example of application using pillars", // //<3>
       libraryDependencies ++= Dependencies.tests ++ Dependencies.migrationsRuntime, // //<4>
-      buildInfoKeys          := Seq[BuildInfoKey](name, version, description),                // //<5>
-      buildInfoOptions       := Seq(BuildInfoOption.Traits("pillars.BuildInfo")),             // //<6>
-      buildInfoPackage       := "example.build",                                              // //<7>
-      tlMimaPreviousVersions := Set.empty,
-      libraryDependencySchemes ++= libDependencySchemes,
-      unusedCompileDependenciesFilter -= moduleFilter("org.typelevel", "scalac-compat-annotation")
+      buildInfoKeys    := Seq[BuildInfoKey](name, version, description),                // //<5>
+      buildInfoOptions := Seq(BuildInfoOption.Traits("pillars.BuildInfo")),             // //<6>
+      buildInfoPackage := "example.build",                                              // //<7>
+      libraryDependencySchemes ++= libDependencySchemes
     )
     .settings(noPublish)
     .dependsOn(core, dbSkunk, flags, httpClient, dbMigrations)
 // end::example[]
 
 lazy val docs = Project("pillars-docs", file("modules/docs"))
-    .enablePlugins(NoPublishPlugin)
+    .settings(noPublish)
     .settings(sharedSettings)
     .settings(
-      name                   := "pillars-docs",
-      tlMimaPreviousVersions := Set.empty,
-      libraryDependencySchemes ++= libDependencySchemes,
-      unusedCompileDependenciesFilter -= moduleFilter("org.typelevel", "scalac-compat-annotation")
+      name := "pillars-docs",
+      libraryDependencySchemes ++= libDependencySchemes
     )
     .dependsOn(core)
 
@@ -270,21 +232,6 @@ lazy val pillars = project
     )
     .settings(sharedSettings)
     .settings(
-      name                                       := "pillars",
-      tlMimaPreviousVersions                     := Set.empty,
-      ScalaUnidoc / unidoc / unidocProjectFilter := inAnyProject -- inProjects(example, docs),
-      ScalaUnidoc / unidoc / target              := file("target/microsite/output/api"),
-      ScalaUnidoc / unidoc / scalacOptions ++= Seq(
-        "-project",
-        name.value,
-        "-project-version",
-        version.value,
-        "-project-logo",
-        "modules/docs/src/docs/images/logo.png",
-        //    "-source-links:github://FunktionalIO/pillars",
-        "-social-links:github::https://github.com/FunktionalIO/pillars",
-        "-no-link-warnings"
-      ),
-      unusedCompileDependenciesFilter -= moduleFilter("org.typelevel", "scalac-compat-annotation")
+      name := "pillars"
     )
     .settings(noPublish)
