@@ -1,26 +1,17 @@
 import sbt.ThisBuild
-import xerial.sbt.Sonatype.GitHubHosting
-import xerial.sbt.Sonatype.sonatypeCentralHost
 
 ThisBuild / tlBaseVersion := "0.5" // your current series x.y
 
-ThisBuild / organization := "io.funktional"
-ThisBuild / homepage     := Some(url("https://pillars.dev"))
-ThisBuild / startYear    := Some(2023)
-ThisBuild / licenses     := Seq("EPL-2.0" -> url("https://www.eclipse.org/legal/epl-2.0/"))
+ThisBuild / resolvers += Resolver.githubPackages("LedgerHQ")
+ThisBuild / githubOwner      := "LedgerHQ"
+ThisBuild / githubRepository := "pillars"
+ThisBuild / organization     := "co.ledger"
+ThisBuild / homepage         := Some(url("https://pillars.dev"))
+ThisBuild / startYear        := Some(2023)
+ThisBuild / licenses         := Seq("EPL-2.0" -> url("https://www.eclipse.org/legal/epl-2.0/"))
 ThisBuild / developers ++= List(
   // your GitHub handle and name
   tlGitHubDev("rlemaitre", "Raphaël Lemaitre")
-)
-
-ThisBuild / sonatypeCredentialHost := sonatypeCentralHost
-ThisBuild / sonatypeProjectHosting := Some(GitHubHosting(
-  "FunktionalIO",
-  "pillars",
-  "github.com.lushly070@passmail.net"
-))
-ThisBuild / scmInfo                := Some(
-  ScmInfo(url("https://github.com/FunktionalIO/pillars"), "scm:git:git@github.com:FunktionalIO/pillars.git")
 )
 
 ThisBuild / scalaVersion := versions.scala // the default Scala
