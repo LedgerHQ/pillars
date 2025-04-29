@@ -55,13 +55,13 @@ object DB extends ModuleSupport:
 
     def load(context: ModuleSupport.Context, modules: Modules): Resource[IO, DB] =
         import context.*
-        given Files[IO]  = Files.forIO
-        given Tracer[IO] = context.observability.tracer
+        given Files[IO] = Files.forIO
         for
-            _       <- Resource.eval(logger.info("Loading DB module"))
-            config  <- Resource.eval(reader.read[DatabaseConfig]("db"))
-            poolRes <- createPool(config)
-            _       <- Resource.eval(logger.info("DB module loaded"))
+            _               <- Resource.eval(logger.info("Loading DB module"))
+            config          <- Resource.eval(reader.read[DatabaseConfig]("db"))
+            given Tracer[IO] = if config.tracing then context.observability.tracer else Tracer.noop[IO]
+            poolRes         <- createPool(config)
+            _               <- Resource.eval(logger.info("DB module loaded"))
         yield DB(config, poolRes)
         end for
     end load
@@ -103,6 +103,7 @@ final case class DatabaseConfig(
     debug: Boolean = false,
     probe: ProbeConfig = ProbeConfig(),
     logging: LoggingConfig = LoggingConfig(),
+    tracing: Boolean = false,
     typerStrategy: Typer.Strategy = Typer.Strategy.BuiltinsOnly,
     extraParameters: Map[String, String] = Map.empty,
     commandCache: Int = 1024,
