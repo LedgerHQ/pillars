@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.5.2-RC8] - 2025-04-30
+### :wrench: Chores
+- [`2244fbc`](https://github.com/LedgerHQ/pillars/commit/2244fbcdbdb436c09ae3632a176dea4e09527dae) - revert config to kebab case *(commit by [@jnicoulaud-ledger](https://github.com/jnicoulaud-ledger))*
+
+
 ## [v0.5.2-RC1] - 2025-04-29
 ### :boom: BREAKING CHANGES
 - due to [`c56f3b9`](https://github.com/LedgerHQ/pillars/commit/c56f3b9c971a6d425a6dbd60cbefccbc4a0ef653) - migrate from tagless final to IO-based implementation *(PR [#225](https://github.com/LedgerHQ/pillars/pull/225) by [@rlemaitre](https://github.com/rlemaitre))*:
@@ -419,3 +424,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.5.0]: https://github.com/FunktionalIO/pillars/compare/v0.4.5...v0.5.0
 [v0.5.1]: https://github.com/FunktionalIO/pillars/compare/v0.5.0...v0.5.1
 [v0.5.2-RC1]: https://github.com/LedgerHQ/pillars/compare/v0.5.1...v0.5.2-RC1
+[v0.5.2-RC8]: https://github.com/LedgerHQ/pillars/compare/v0.5.2-RC7...v0.5.2-RC8
