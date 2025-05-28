@@ -10,7 +10,7 @@ import io.github.iltotore.iron.constraint.all.*
 final case class FeatureFlag(name: Flag, status: Status):
     def isEnabled: Boolean = status.isEnabled
 
-private type FlagConstraint = DescribedAs[Not[Blank], "Name must not be blank"]
+private type FlagConstraint = Not[Blank] `DescribedAs` "Name must not be blank"
 type Flag                   = Flag.T
 
 object Flag extends RefinedType[String, FlagConstraint]

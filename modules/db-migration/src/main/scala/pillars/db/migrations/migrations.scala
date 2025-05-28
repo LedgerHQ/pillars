@@ -100,17 +100,17 @@ object MigrationConfig:
     given Codec[MigrationConfig] = Codec.AsObject.derivedConfigured
 
 private type JdbcUrlConstraint =
-    DescribedAs[Match["jdbc\\:[^:]+\\:.*"], "JDBC URL must be in jdbc:<subprotocol>:<subname> format"]
+    Match["jdbc\\:[^:]+\\:.*"] `DescribedAs` "JDBC URL must be in jdbc:<subprotocol>:<subname> format"
 type JdbcUrl                   = JdbcUrl.T
 
 object JdbcUrl extends RefinedType[String, JdbcUrlConstraint]
 
-private type DatabaseNameConstraint = DescribedAs[Not[Blank], "Database name must not be blank"]
+private type DatabaseNameConstraint = Not[Blank] `DescribedAs` "Database name must not be blank"
 type DatabaseName                   = DatabaseName.T
 
 object DatabaseName extends RefinedType[String, DatabaseNameConstraint]
 
-private type DatabaseSchemaConstraint = DescribedAs[Not[Blank], "Database schema must not be blank"]
+private type DatabaseSchemaConstraint = Not[Blank] `DescribedAs` "Database schema must not be blank"
 type DatabaseSchema                   = DatabaseSchema.T
 
 object DatabaseSchema extends RefinedType[String, DatabaseSchemaConstraint]:
@@ -118,20 +118,18 @@ object DatabaseSchema extends RefinedType[String, DatabaseSchemaConstraint]:
     val pillars: DatabaseSchema = DatabaseSchema("pillars")
 
 private type DatabaseTableConstraint =
-    DescribedAs[
-      (Not[Blank] & Match["""^[a-zA-Z_][0-9a-zA-Z$_]{0,63}$"""]),
-      "Database table must be at most 64 characters (letter, digit, dollar sign or underscore) long and start with a letter or an underscore"
-    ]
-type DatabaseTable                   = DatabaseTable.T
+    (Not[Blank] & Match["""^[a-zA-Z_][0-9a-zA-Z$_]{0,63}$"""]) `DescribedAs` "Database table must be at most 64 characters (letter, digit, dollar sign or underscore) long and start with a letter or an underscore"
+
+type DatabaseTable = DatabaseTable.T
 
 object DatabaseTable extends RefinedType[String, DatabaseTableConstraint]
 
-private type DatabaseUserConstraint = DescribedAs[Not[Blank], "Database user must not be blank"]
+private type DatabaseUserConstraint = Not[Blank] `DescribedAs` "Database user must not be blank"
 type DatabaseUser                   = DatabaseUser.T
 
 object DatabaseUser extends RefinedType[String, DatabaseUserConstraint]
 
-private type DatabasePasswordConstraint = DescribedAs[Not[Blank], "Database password must not be blank"]
+private type DatabasePasswordConstraint = Not[Blank] `DescribedAs` "Database password must not be blank"
 type DatabasePassword                   = DatabasePassword.T
 
 object DatabasePassword extends RefinedType[String, DatabasePasswordConstraint]

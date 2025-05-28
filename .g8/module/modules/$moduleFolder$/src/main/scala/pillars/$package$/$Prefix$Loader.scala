@@ -83,10 +83,10 @@ object $Prefix$Config:
     given Codec[$Prefix$Config] = Codec.AsObject.derivedConfigured
 end $Prefix$Config
 
-private type $Prefix$UserConstraint = DescribedAs[Not[Blank], "$Prefix$ user must not be blank"]
+private type $Prefix$UserConstraint = Not[Blank] `DescribedAs` "$Prefix$ user must not be blank"
 type $Prefix$User                   = $Prefix$User.T
 object $Prefix$User extends RefinedType[String, $Prefix$UserConstraint]
 
-private type $Prefix$PasswordConstraint = DescribedAs[Not[Blank], "$Prefix$ password must not be blank"]
+private type $Prefix$PasswordConstraint = Not[Blank] `DescribedAs` "$Prefix$ password must not be blank"
 type $Prefix$Password                   = $Prefix$Password.T
 object $Prefix$Password extends RefinedType[String, $Prefix$PasswordConstraint]

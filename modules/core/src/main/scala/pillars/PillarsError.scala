@@ -59,17 +59,17 @@ object PillarsError:
         override def details: Option[String] = Some(s"Payload limit ($maxLength) exceeded")
     end PayloadTooLarge
 
-    private type CodeConstraint = DescribedAs[(Not[Empty] & LettersUpperCase), "Code cannot be empty"]
+    private type CodeConstraint = (Not[Empty] & LettersUpperCase) `DescribedAs` "Code cannot be empty"
     type Code                   = Code.T
 
     object Code extends RefinedType[String, CodeConstraint]
 
-    private type MessageConstraint = DescribedAs[Not[Empty], "Message cannot be empty"]
+    private type MessageConstraint = Not[Empty] `DescribedAs` "Message cannot be empty"
     type Message                   = Message.T
 
     object Message extends RefinedType[String, MessageConstraint]
 
-    private type ErrorNumberConstraint = DescribedAs[Positive, "Number must be strictly positive"]
+    private type ErrorNumberConstraint = Positive `DescribedAs` "Number must be strictly positive"
     type ErrorNumber                   = ErrorNumber.T
 
     object ErrorNumber extends RefinedType[Int, ErrorNumberConstraint]

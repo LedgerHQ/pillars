@@ -156,12 +156,12 @@ final case class LoggingConfig(
     timing: Boolean = false
 )
 
-private type DatabaseNameConstraint = DescribedAs[Not[Blank], "Database name must not be blank"]
+private type DatabaseNameConstraint = Not[Blank] `DescribedAs` "Database name must not be blank"
 type DatabaseName                   = DatabaseName.T
 
 object DatabaseName extends RefinedType[String, DatabaseNameConstraint]
 
-private type DatabaseSchemaConstraint = DescribedAs[Not[Blank], "Database schema must not be blank"]
+private type DatabaseSchemaConstraint = Not[Blank] `DescribedAs` "Database schema must not be blank"
 type DatabaseSchema                   = DatabaseSchema.T
 
 object DatabaseSchema extends RefinedType[String, DatabaseSchemaConstraint]:
@@ -177,23 +177,23 @@ type DatabaseTable                   = DatabaseTable.T
 
 object DatabaseTable extends RefinedType[String, DatabaseTableConstraint]
 
-private type DatabaseUserConstraint = DescribedAs[Not[Blank], "Database user must not be blank"]
+private type DatabaseUserConstraint = Not[Blank] `DescribedAs` "Database user must not be blank"
 type DatabaseUser                   = DatabaseUser.T
 
 object DatabaseUser extends RefinedType[String, DatabaseUserConstraint]
 
-private type DatabasePasswordConstraint = DescribedAs[Not[Blank], "Database password must not be blank"]
+private type DatabasePasswordConstraint = Not[Blank] `DescribedAs` "Database password must not be blank"
 type DatabasePassword                   = DatabasePassword.T
 
 object DatabasePassword extends RefinedType[String, DatabasePasswordConstraint]
 
-private type PoolSizeConstraint = DescribedAs[GreaterEqual[1], "Pool size must be greater or equal to 1"]
+private type PoolSizeConstraint = GreaterEqual[1] `DescribedAs` "Pool size must be greater or equal to 1"
 type PoolSize                   = PoolSize.T
 
 object PoolSize extends RefinedType[Int, PoolSizeConstraint]
 
 private type VersionConstraint =
-    DescribedAs[Not[Blank] & Match["^(\\d+\\.\\d+\\.\\d+)$"], "Schema version must be in the form of X.Y.Z"]
+    Not[Blank] & Match["^(\\d+\\.\\d+\\.\\d+)$"] `DescribedAs` "Schema version must be in the form of X.Y.Z"
 type SchemaVersion             = SchemaVersion.T
 
 object SchemaVersion extends RefinedType[String, Not[Blank] & Match["^(\\d+\\.\\d+\\.\\d+)$"]]
