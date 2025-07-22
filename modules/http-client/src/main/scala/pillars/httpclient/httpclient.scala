@@ -22,8 +22,8 @@ import org.http4s.Uri
 import org.http4s.client.Client
 import org.http4s.client.middleware.FollowRedirect
 import org.http4s.client.middleware.Logger
+import org.http4s.ember.client.EmberClientBuilder
 import org.http4s.headers.`User-Agent`
-import org.http4s.netty.client.NettyClientBuilder
 import pillars.Logging
 import pillars.Module
 import pillars.Modules
@@ -102,12 +102,10 @@ object HttpClient extends ModuleSupport:
             conf    <- Resource.eval(reader.read[HttpClient.Config]("http-client"))
             metrics <- if conf.metrics then ClientMetrics(observability).map(_.middleware).toResource
                        else Resource.pure(identity[Client[IO]])
-            client  <- NettyClientBuilder[IO]
-                           .withHttp2
-                           .withNioTransport
+            client  <- EmberClientBuilder.default[IO]
                            .withUserAgent(conf.userAgent)
-                           .withMaxConnectionsPerKey(conf.maxConnections)
-                           .resource
+                           .withMaxPerKey(_ => conf.maxConnections)
+                           .build
                            .map: client =>
                                val logging        =
                                    if conf.logging.enabled then
