@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.5.2-RC9] - 2025-07-22
+### :wrench: Chores
+- [`e159f4f`](https://github.com/LedgerHQ/pillars/commit/e159f4f9ee00307ec2dba5913a88b9ab905c9173) - **BACK-9362**: switch from netty to ember *(commit by [@jnicoulaud-ledger](https://github.com/jnicoulaud-ledger))*
+
+
 ## [v0.5.2-RC8] - 2025-04-30
 ### :wrench: Chores
 - [`2244fbc`](https://github.com/LedgerHQ/pillars/commit/2244fbcdbdb436c09ae3632a176dea4e09527dae) - revert config to kebab case *(commit by [@jnicoulaud-ledger](https://github.com/jnicoulaud-ledger))*
@@ -425,3 +430,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.5.1]: https://github.com/FunktionalIO/pillars/compare/v0.5.0...v0.5.1
 [v0.5.2-RC1]: https://github.com/LedgerHQ/pillars/compare/v0.5.1...v0.5.2-RC1
 [v0.5.2-RC8]: https://github.com/LedgerHQ/pillars/compare/v0.5.2-RC7...v0.5.2-RC8
+[v0.5.2-RC9]: https://github.com/LedgerHQ/pillars/compare/v0.5.2-RC8...v0.5.2-RC9
