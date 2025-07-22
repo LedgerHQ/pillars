@@ -13,7 +13,6 @@ object versions {
     val fs2              = "3.12.0"
     val fs2Rabbit        = "5.2.0"
     val http4s           = "0.23.30"
-    val http4sNetty      = "0.5.23"
     val ip4s             = "3.6.0"
     val iron             = "2.6.0"
     val literally        = "1.2.0"
@@ -70,12 +69,12 @@ object Dependencies {
     )
 
     val http4sClient: Seq[ModuleID] = Seq(
-      "org.http4s"                  %% "http4s-netty-client" % versions.http4sNetty,
+      "org.http4s"                  %% "http4s-ember-client" % versions.http4s,
       "com.softwaremill.sttp.tapir" %% "tapir-http4s-client" % versions.tapir,
       "com.alejandrohdezma"         %% "http4s-munit"        % versions.munit.http4s % Test
     )
     val http4sServer: Seq[ModuleID] = Seq(
-      "org.http4s" %% "http4s-netty-server" % versions.http4sNetty
+      "org.http4s" %% "http4s-ember-server" % versions.http4s
     )
     val scodec: Seq[ModuleID]       = Seq(
       "org.scodec" %% "scodec-bits" % versions.scodec.bits,

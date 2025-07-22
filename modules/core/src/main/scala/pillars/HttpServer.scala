@@ -14,7 +14,7 @@ import org.http4s.HttpVersion
 import org.http4s.Response
 import org.http4s.Status
 import org.http4s.circe.CirceEntityCodec.circeEntityEncoder
-import org.http4s.netty.server.NettyServerBuilder
+import org.http4s.ember.server.EmberServerBuilder
 import org.http4s.server.Server
 import org.http4s.server.middleware.CORS
 import org.http4s.server.middleware.ErrorHandling
@@ -94,11 +94,12 @@ object HttpServer:
 
         val app: HttpApp[IO] = routes |> logging |> errorHandling |> cors
 
-        NettyServerBuilder[IO].withoutSsl.withNioTransport
-            .bindHttp(config.port.value, config.host.toString)
+        EmberServerBuilder
+            .default[IO]
+            .withHost(config.host)
+            .withPort(config.port)
             .withHttpApp(app)
-            .withoutBanner
-            .resource
+            .build
     end build
 
     private def exceptionHandler(tracer: Tracer[IO]): ExceptionHandler[IO] =
