@@ -25,7 +25,7 @@ object versions {
     val testContainers   = "0.43.0"
 
     object munit {
-        val core       = "1.1.0"
+        val core       = "1.1.2"
         val catsEffect = "2.1.0"
         val scalacheck = "1.1.0"
         val http4s     = "1.1.0"
