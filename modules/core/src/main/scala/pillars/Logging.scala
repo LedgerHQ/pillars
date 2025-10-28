@@ -42,7 +42,7 @@ object Logging:
     private type BufferSizeConstraint = Positive `DescribedAs` "Buffer size should be positive"
     type BufferSize                   = BufferSize.T
 
-    object BufferSize extends RefinedType[Int, BufferSizeConstraint]
+    object BufferSize extends RefinedSubtype[Int, BufferSizeConstraint]
 
     enum Format:
         case Json

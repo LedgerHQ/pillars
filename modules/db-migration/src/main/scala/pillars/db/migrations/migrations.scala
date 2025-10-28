@@ -103,17 +103,17 @@ private type JdbcUrlConstraint =
     Match["jdbc\\:[^:]+\\:.*"] `DescribedAs` "JDBC URL must be in jdbc:<subprotocol>:<subname> format"
 type JdbcUrl                   = JdbcUrl.T
 
-object JdbcUrl extends RefinedType[String, JdbcUrlConstraint]
+object JdbcUrl extends RefinedSubtype[String, JdbcUrlConstraint]
 
 private type DatabaseNameConstraint = Not[Blank] `DescribedAs` "Database name must not be blank"
 type DatabaseName                   = DatabaseName.T
 
-object DatabaseName extends RefinedType[String, DatabaseNameConstraint]
+object DatabaseName extends RefinedSubtype[String, DatabaseNameConstraint]
 
 private type DatabaseSchemaConstraint = Not[Blank] `DescribedAs` "Database schema must not be blank"
 type DatabaseSchema                   = DatabaseSchema.T
 
-object DatabaseSchema extends RefinedType[String, DatabaseSchemaConstraint]:
+object DatabaseSchema extends RefinedSubtype[String, DatabaseSchemaConstraint]:
     val public: DatabaseSchema  = DatabaseSchema("public")
     val pillars: DatabaseSchema = DatabaseSchema("pillars")
 
@@ -122,14 +122,14 @@ private type DatabaseTableConstraint =
 
 type DatabaseTable = DatabaseTable.T
 
-object DatabaseTable extends RefinedType[String, DatabaseTableConstraint]
+object DatabaseTable extends RefinedSubtype[String, DatabaseTableConstraint]
 
 private type DatabaseUserConstraint = Not[Blank] `DescribedAs` "Database user must not be blank"
 type DatabaseUser                   = DatabaseUser.T
 
-object DatabaseUser extends RefinedType[String, DatabaseUserConstraint]
+object DatabaseUser extends RefinedSubtype[String, DatabaseUserConstraint]
 
 private type DatabasePasswordConstraint = Not[Blank] `DescribedAs` "Database password must not be blank"
 type DatabasePassword                   = DatabasePassword.T
 
-object DatabasePassword extends RefinedType[String, DatabasePasswordConstraint]
+object DatabasePassword extends RefinedSubtype[String, DatabasePasswordConstraint]
