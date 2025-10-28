@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.5.2-RC10] - 2025-10-28
+### :wrench: Chores
+- [`010d6d3`](https://github.com/LedgerHQ/pillars/commit/010d6d375e9913c636002b1b91d17bdad712b6ff) - Update doobie-core, doobie-hikari from 1.0.0-RC9 to 1.0.0-RC10 *(PR [#6](https://github.com/LedgerHQ/pillars/pull/6) by [@ldg-github-ci](https://github.com/ldg-github-ci))*
+- [`421227e`](https://github.com/LedgerHQ/pillars/commit/421227e51c5dbea058cbf7451b1ad17713ab6cd8) - Update skunk-core from 1.0.0-M10 to 1.0.0-M11 *(PR [#7](https://github.com/LedgerHQ/pillars/pull/7) by [@ldg-github-ci](https://github.com/ldg-github-ci))*
+- [`23072eb`](https://github.com/LedgerHQ/pillars/commit/23072eb24a399e9535062f3b2980349119913b16) - Update otel4s-sdk, otel4s-sdk-exporter from 0.12.0 to 0.13.1 *(PR [#8](https://github.com/LedgerHQ/pillars/pull/8) by [@ldg-github-ci](https://github.com/ldg-github-ci))*
+- [`eff5b7b`](https://github.com/LedgerHQ/pillars/commit/eff5b7b8bd0eb3bb8c510eded167e9f25d57b2a3) - Update fs2-core from 3.12.0 to 3.12.2
+- [`632ec73`](https://github.com/LedgerHQ/pillars/commit/632ec7386a03b1470690aaaa6a6229eb403521fa) - Update ip4s-core from 3.6.0 to 3.7.0
+- [`030ce19`](https://github.com/LedgerHQ/pillars/commit/030ce197bf495eaf32472bf0ec59ef16f5889398) - Update sbt-dynver from 5.1.0 to 5.1.1
+- [`af4df85`](https://github.com/LedgerHQ/pillars/commit/af4df85dd4efa6fef144b92e80a343b57b1d427a) - Update scribe from 3.16.0 to 3.16.1
+- [`01ca632`](https://github.com/LedgerHQ/pillars/commit/01ca63254a08db2900743494aa2b2f298580be95) - Update tapir-http4s-client from 1.11.32 to 1.11.44
+- [`7e7606a`](https://github.com/LedgerHQ/pillars/commit/7e7606aaa56028103b93e18c189916022cfc966a) - Update circe-core from 0.14.12 to 0.14.14
+- [`496f262`](https://github.com/LedgerHQ/pillars/commit/496f262388b6a6bf2a49f79052c2e0fd540fdbf5) - Update circe-yaml from 0.16.0 to 0.16.1
+- [`cf3d11d`](https://github.com/LedgerHQ/pillars/commit/cf3d11daabb7803394b3a5774c7f58647bb8cc4b) - Update flyway-core from 11.5.0 to 11.13.0
+- [`58e26b4`](https://github.com/LedgerHQ/pillars/commit/58e26b4a8923d273df46dbd32c233bacab688fdf) - Update postgresql from 42.7.5 to 42.7.7
+- [`f092e95`](https://github.com/LedgerHQ/pillars/commit/f092e95e7d0a873b800854927d10010fb16a1ed4) - Update sbt from 1.10.11 to 1.11.6
+- [`1852a22`](https://github.com/LedgerHQ/pillars/commit/1852a22d8abed71cb4c9477751d19b0206fccfad) - Update munit from 1.1.0 to 1.1.2
+- [`7537116`](https://github.com/LedgerHQ/pillars/commit/7537116b01be20d282785da417afa5453e90e791) - Update munit-scalacheck from 1.1.0 to 1.2.0
+- [`5292929`](https://github.com/LedgerHQ/pillars/commit/529292962f76abcbeb061c1b2f3eecdc2884c6dc) - Update cats-effect from 3.6.0 to 3.6.3
+- [`fa2c722`](https://github.com/LedgerHQ/pillars/commit/fa2c7224cd42fd6d7a575d11c88017766e08ef17) - Patches/Minor updates *(PR [#10](https://github.com/LedgerHQ/pillars/pull/10) by [@ldg-github-ci](https://github.com/ldg-github-ci))*
+
+
 ## [v0.5.2-RC9] - 2025-07-22
 ### :wrench: Chores
 - [`e159f4f`](https://github.com/LedgerHQ/pillars/commit/e159f4f9ee00307ec2dba5913a88b9ab905c9173) - **BACK-9362**: switch from netty to ember *(commit by [@jnicoulaud-ledger](https://github.com/jnicoulaud-ledger))*
@@ -431,3 +452,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.5.2-RC1]: https://github.com/LedgerHQ/pillars/compare/v0.5.1...v0.5.2-RC1
 [v0.5.2-RC8]: https://github.com/LedgerHQ/pillars/compare/v0.5.2-RC7...v0.5.2-RC8
 [v0.5.2-RC9]: https://github.com/LedgerHQ/pillars/compare/v0.5.2-RC8...v0.5.2-RC9
+[v0.5.2-RC10]: https://github.com/LedgerHQ/pillars/compare/v0.5.2-RC9...v0.5.2-RC10
