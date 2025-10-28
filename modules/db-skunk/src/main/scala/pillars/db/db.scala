@@ -179,17 +179,17 @@ object DatabaseTable extends RefinedSubtype[String, DatabaseTableConstraint]
 
 private type DatabaseUserConstraint = Not[Blank] `DescribedAs` "Database user must not be blank"
 
-type DatabaseUser                   = DatabaseUser.T
+type DatabaseUser = DatabaseUser.T
 object DatabaseUser extends RefinedSubtype[String, DatabaseUserConstraint]
 
 private type DatabasePasswordConstraint = Not[Blank] `DescribedAs` "Database password must not be blank"
 
-type DatabasePassword                   = DatabasePassword.T
+type DatabasePassword = DatabasePassword.T
 object DatabasePassword extends RefinedSubtype[String, DatabasePasswordConstraint]
 
 private type PoolSizeConstraint = GreaterEqual[1] `DescribedAs` "Pool size must be greater or equal to 1"
 
-type PoolSize                   = PoolSize.T
+type PoolSize = PoolSize.T
 object PoolSize extends RefinedSubtype[Int, PoolSizeConstraint]
 
 private type VersionConstraint =
