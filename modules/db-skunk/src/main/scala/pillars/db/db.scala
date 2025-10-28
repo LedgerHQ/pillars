@@ -104,7 +104,7 @@ final case class DatabaseConfig(
     probe: ProbeConfig = ProbeConfig(),
     logging: LoggingConfig = LoggingConfig(),
     tracing: Boolean = false,
-    typerStrategy: Typer.Strategy = Typer.Strategy.BuiltinsOnly,
+    typerStrategy: TypingStrategy = TypingStrategy.BuiltinsOnly,
     extraParameters: Map[String, String] = Map.empty,
     commandCache: Int = 1024,
     queryCache: Int = 1024,
@@ -119,12 +119,12 @@ object DatabaseConfig:
     import pillars.Logging.Config.given
     given Codec[LoggingConfig]  = Codec.AsObject.derivedConfigured
 
-    given CirceEncoder[Typer.Strategy] = CirceEncoder.encodeString.contramap:
-        case Typer.Strategy.BuiltinsOnly => "BuiltinsOnly"
-        case Typer.Strategy.SearchPath   => "SearchPath"
-    given CirceDecoder[Typer.Strategy] = CirceDecoder.decodeString.map(_.toLowerCase).emap:
-        case "builtinsonly" => Right(Typer.Strategy.BuiltinsOnly)
-        case "searchpath"   => Right(Typer.Strategy.SearchPath)
+    given CirceEncoder[TypingStrategy] = CirceEncoder.encodeString.contramap:
+        case TypingStrategy.BuiltinsOnly => "BuiltinsOnly"
+        case TypingStrategy.SearchPath   => "SearchPath"
+    given CirceDecoder[TypingStrategy] = CirceDecoder.decodeString.map(_.toLowerCase).emap:
+        case "builtinsonly" => Right(TypingStrategy.BuiltinsOnly)
+        case "searchpath"   => Right(TypingStrategy.SearchPath)
         case other          => Left(s"Invalid Typer strategy: $other")
 
     given CirceDecoder[SSL] = CirceDecoder.decodeString.map(_.toLowerCase).emap:
@@ -178,18 +178,18 @@ type DatabaseTable                   = DatabaseTable.T
 object DatabaseTable extends RefinedSubtype[String, DatabaseTableConstraint]
 
 private type DatabaseUserConstraint = Not[Blank] `DescribedAs` "Database user must not be blank"
-type DatabaseUser                   = DatabaseUser.T
 
+type DatabaseUser                   = DatabaseUser.T
 object DatabaseUser extends RefinedSubtype[String, DatabaseUserConstraint]
 
 private type DatabasePasswordConstraint = Not[Blank] `DescribedAs` "Database password must not be blank"
-type DatabasePassword                   = DatabasePassword.T
 
+type DatabasePassword                   = DatabasePassword.T
 object DatabasePassword extends RefinedSubtype[String, DatabasePasswordConstraint]
 
 private type PoolSizeConstraint = GreaterEqual[1] `DescribedAs` "Pool size must be greater or equal to 1"
-type PoolSize                   = PoolSize.T
 
+type PoolSize                   = PoolSize.T
 object PoolSize extends RefinedSubtype[Int, PoolSizeConstraint]
 
 private type VersionConstraint =
