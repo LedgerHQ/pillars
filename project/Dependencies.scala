@@ -14,7 +14,7 @@ object versions {
     val fs2Rabbit        = "5.2.0"
     val http4s           = "0.23.32"
     val ip4s             = "3.7.0"
-    val iron             = "3.0.1"
+    val iron             = "3.2.0"
     val literally        = "1.2.0"
     val otel4s           = "0.13.2"
     val postgresqlDriver = "42.7.8"

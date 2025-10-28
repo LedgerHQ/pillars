@@ -9,31 +9,31 @@ import io.github.iltotore.iron.constraint.all.*
 
 type UsernameConstraint = (MinLength[3] & MaxLength[20]) `DescribedAs` "Must be between 3 and 20 characters"
 type Username           = Username.T
-object Username extends RefinedType[String, UsernameConstraint]
+object Username extends RefinedSubtype[String, UsernameConstraint]
 
 type AgeConstraint = (Positive & Less[150]) `DescribedAs` "Must be a positive number less than 150"
 type Age           = Age.T
-object Age extends RefinedType[Int, AgeConstraint]
+object Age extends RefinedSubtype[Int, AgeConstraint]
 
 type FirstNameConstraint = Not[Blank] `DescribedAs` "First name must not be blank"
 type FirstName           = FirstName.T
-object FirstName extends RefinedType[String, FirstNameConstraint]
+object FirstName extends RefinedSubtype[String, FirstNameConstraint]
 
 type LastNameConstraint = Not[Blank] `DescribedAs` "Last name must not be blank"
 type LastName           = LastName.T
-object LastName extends RefinedType[String, LastNameConstraint]
+object LastName extends RefinedSubtype[String, LastNameConstraint]
 
 type EmailConstraint = Match[".*@.*\\..*"] `DescribedAs` "Must be a valid e-mail"
 type Email           = Email.T
-object Email extends RefinedType[String, EmailConstraint]
+object Email extends RefinedSubtype[String, EmailConstraint]
 
 type CountryNameConstraint = Not[Blank] `DescribedAs` "Country name must not be blank"
 type CountryName           = CountryName.T
-object CountryName extends RefinedType[String, CountryNameConstraint]
+object CountryName extends RefinedSubtype[String, CountryNameConstraint]
 
 type CountryCodeConstraint = (FixedLength[2] & LettersUpperCase) `DescribedAs` "Country name must not be blank"
 type CountryCode           = CountryCode.T
-object CountryCode extends RefinedType[String, CountryCodeConstraint]
+object CountryCode extends RefinedSubtype[String, CountryCodeConstraint]
 
 case class Country(code: CountryCode, name: CountryName, niceName: String)
 

@@ -107,7 +107,7 @@ object Observability:
 
     private type ServiceNameConstraint = Not[Blank]
     type ServiceName                   = ServiceName.T
-    object ServiceName extends RefinedType[String, ServiceNameConstraint]
+    object ServiceName extends RefinedSubtype[String, ServiceNameConstraint]
 
     extension [A <: String](value: A)
         def toAttribute(name: String): Attribute[String] = Attribute(name, value)

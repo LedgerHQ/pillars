@@ -32,7 +32,7 @@ object probes:
     object Component:
         private type NameConstraint = Not[Blank] & Not[Contain[":"]]
         type Name                   = Name.T
-        object Name extends RefinedType[String, NameConstraint]
+        object Name extends RefinedSubtype[String, NameConstraint]
 
         enum Type:
             case System, Datastore, Component

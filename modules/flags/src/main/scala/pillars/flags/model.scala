@@ -13,7 +13,7 @@ final case class FeatureFlag(name: Flag, status: Status):
 private type FlagConstraint = Not[Blank] `DescribedAs` "Name must not be blank"
 type Flag                   = Flag.T
 
-object Flag extends RefinedType[String, FlagConstraint]
+object Flag extends RefinedSubtype[String, FlagConstraint]
 
 enum Status:
     case Enabled, Disabled

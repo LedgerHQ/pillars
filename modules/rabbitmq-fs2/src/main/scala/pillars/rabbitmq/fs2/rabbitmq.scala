@@ -119,16 +119,16 @@ end RabbitMQConfig
 
 private type RabbitMQVirtualHostConstraint = Not[Blank] `DescribedAs` "RabbitMQ virtual host must not be blank"
 type RabbitMQVirtualHost                   = RabbitMQVirtualHost.T
-object RabbitMQVirtualHost extends RefinedType[String, RabbitMQVirtualHostConstraint]
+object RabbitMQVirtualHost extends RefinedSubtype[String, RabbitMQVirtualHostConstraint]
 
 private type RabbitMQUserConstraint = Not[Blank] `DescribedAs` "RabbitMQ user must not be blank"
 type RabbitMQUser                   = RabbitMQUser.T
-object RabbitMQUser extends RefinedType[String, RabbitMQUserConstraint]
+object RabbitMQUser extends RefinedSubtype[String, RabbitMQUserConstraint]
 
 private type RabbitMQPasswordConstraint = Not[Blank] `DescribedAs` "RabbitMQ password must not be blank"
 type RabbitMQPassword                   = RabbitMQPassword.T
-object RabbitMQPassword extends RefinedType[String, RabbitMQPasswordConstraint]
+object RabbitMQPassword extends RefinedSubtype[String, RabbitMQPasswordConstraint]
 
 private type RabbitMQConnectionNameConstraint = Not[Blank] `DescribedAs` "RabbitMQ connection name must not be blank"
 type RabbitMQConnectionName                   = RabbitMQConnectionName.T
-object RabbitMQConnectionName extends RefinedType[String, RabbitMQConnectionNameConstraint]
+object RabbitMQConnectionName extends RefinedSubtype[String, RabbitMQConnectionNameConstraint]

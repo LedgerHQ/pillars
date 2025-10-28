@@ -41,15 +41,15 @@ abstract class IOApp(override val modules: ModuleSupport*) extends App(modules*)
 object App:
     private type NameConstraint = Not[Blank]
     type Name                   = Name.T
-    object Name extends RefinedType[String, NameConstraint]
+    object Name extends RefinedSubtype[String, NameConstraint]
 
     private type VersionConstraint = SemanticVersion
     type Version                   = Version.T
-    object Version extends RefinedType[String, VersionConstraint]
+    object Version extends RefinedSubtype[String, VersionConstraint]
 
     private type DescriptionConstraint = Not[Blank]
     type Description                   = Description.T
-    object Description extends RefinedType[String, DescriptionConstraint]
+    object Description extends RefinedSubtype[String, DescriptionConstraint]
     def apply(value: String): Description         = value.asInstanceOf[Description]
     def unapply(description: Description): String = description.asInstanceOf[String]
     def assume(description: Description): String  = description.asInstanceOf[String]

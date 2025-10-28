@@ -104,7 +104,7 @@ final case class DatabaseConfig(
     probe: ProbeConfig = ProbeConfig(),
     logging: LoggingConfig = LoggingConfig(),
     tracing: Boolean = false,
-    typerStrategy: Typer.Strategy = Typer.Strategy.BuiltinsOnly,
+    typerStrategy: TypingStrategy = TypingStrategy.BuiltinsOnly,
     extraParameters: Map[String, String] = Map.empty,
     commandCache: Int = 1024,
     queryCache: Int = 1024,
@@ -119,12 +119,12 @@ object DatabaseConfig:
     import pillars.Logging.Config.given
     given Codec[LoggingConfig]  = Codec.AsObject.derivedConfigured
 
-    given CirceEncoder[Typer.Strategy] = CirceEncoder.encodeString.contramap:
-        case Typer.Strategy.BuiltinsOnly => "BuiltinsOnly"
-        case Typer.Strategy.SearchPath   => "SearchPath"
-    given CirceDecoder[Typer.Strategy] = CirceDecoder.decodeString.map(_.toLowerCase).emap:
-        case "builtinsonly" => Right(Typer.Strategy.BuiltinsOnly)
-        case "searchpath"   => Right(Typer.Strategy.SearchPath)
+    given CirceEncoder[TypingStrategy] = CirceEncoder.encodeString.contramap:
+        case TypingStrategy.BuiltinsOnly => "BuiltinsOnly"
+        case TypingStrategy.SearchPath   => "SearchPath"
+    given CirceDecoder[TypingStrategy] = CirceDecoder.decodeString.map(_.toLowerCase).emap:
+        case "builtinsonly" => Right(TypingStrategy.BuiltinsOnly)
+        case "searchpath"   => Right(TypingStrategy.SearchPath)
         case other          => Left(s"Invalid Typer strategy: $other")
 
     given CirceDecoder[SSL] = CirceDecoder.decodeString.map(_.toLowerCase).emap:
@@ -159,12 +159,12 @@ final case class LoggingConfig(
 private type DatabaseNameConstraint = Not[Blank] `DescribedAs` "Database name must not be blank"
 type DatabaseName                   = DatabaseName.T
 
-object DatabaseName extends RefinedType[String, DatabaseNameConstraint]
+object DatabaseName extends RefinedSubtype[String, DatabaseNameConstraint]
 
 private type DatabaseSchemaConstraint = Not[Blank] `DescribedAs` "Database schema must not be blank"
 type DatabaseSchema                   = DatabaseSchema.T
 
-object DatabaseSchema extends RefinedType[String, DatabaseSchemaConstraint]:
+object DatabaseSchema extends RefinedSubtype[String, DatabaseSchemaConstraint]:
     val public: DatabaseSchema  = DatabaseSchema("public")
     val pillars: DatabaseSchema = DatabaseSchema("pillars")
 
@@ -175,25 +175,25 @@ private type DatabaseTableConstraint =
     ]
 type DatabaseTable                   = DatabaseTable.T
 
-object DatabaseTable extends RefinedType[String, DatabaseTableConstraint]
+object DatabaseTable extends RefinedSubtype[String, DatabaseTableConstraint]
 
 private type DatabaseUserConstraint = Not[Blank] `DescribedAs` "Database user must not be blank"
-type DatabaseUser                   = DatabaseUser.T
 
-object DatabaseUser extends RefinedType[String, DatabaseUserConstraint]
+type DatabaseUser = DatabaseUser.T
+object DatabaseUser extends RefinedSubtype[String, DatabaseUserConstraint]
 
 private type DatabasePasswordConstraint = Not[Blank] `DescribedAs` "Database password must not be blank"
-type DatabasePassword                   = DatabasePassword.T
 
-object DatabasePassword extends RefinedType[String, DatabasePasswordConstraint]
+type DatabasePassword = DatabasePassword.T
+object DatabasePassword extends RefinedSubtype[String, DatabasePasswordConstraint]
 
 private type PoolSizeConstraint = GreaterEqual[1] `DescribedAs` "Pool size must be greater or equal to 1"
-type PoolSize                   = PoolSize.T
 
-object PoolSize extends RefinedType[Int, PoolSizeConstraint]
+type PoolSize = PoolSize.T
+object PoolSize extends RefinedSubtype[Int, PoolSizeConstraint]
 
 private type VersionConstraint =
     Not[Blank] & Match["^(\\d+\\.\\d+\\.\\d+)$"] `DescribedAs` "Schema version must be in the form of X.Y.Z"
 type SchemaVersion             = SchemaVersion.T
 
-object SchemaVersion extends RefinedType[String, Not[Blank] & Match["^(\\d+\\.\\d+\\.\\d+)$"]]
+object SchemaVersion extends RefinedSubtype[String, Not[Blank] & Match["^(\\d+\\.\\d+\\.\\d+)$"]]

@@ -96,9 +96,9 @@ end RedisConfig
 private type RedisUserConstraint = Not[Blank] `DescribedAs` "Redis user must not be blank"
 type RedisUser                   = RedisUser.T
 
-object RedisUser extends RefinedType[String, RedisUserConstraint]
+object RedisUser extends RefinedSubtype[String, RedisUserConstraint]
 
 private type RedisPasswordConstraint = Not[Blank] `DescribedAs` "Redis password must not be blank"
 type RedisPassword                   = RedisPassword.T
 
-object RedisPassword extends RefinedType[String, RedisPasswordConstraint]
+object RedisPassword extends RefinedSubtype[String, RedisPasswordConstraint]

@@ -62,15 +62,15 @@ object PillarsError:
     private type CodeConstraint = (Not[Empty] & LettersUpperCase) `DescribedAs` "Code cannot be empty"
     type Code                   = Code.T
 
-    object Code extends RefinedType[String, CodeConstraint]
+    object Code extends RefinedSubtype[String, CodeConstraint]
 
     private type MessageConstraint = Not[Empty] `DescribedAs` "Message cannot be empty"
     type Message                   = Message.T
 
-    object Message extends RefinedType[String, MessageConstraint]
+    object Message extends RefinedSubtype[String, MessageConstraint]
 
     private type ErrorNumberConstraint = Positive `DescribedAs` "Number must be strictly positive"
     type ErrorNumber                   = ErrorNumber.T
 
-    object ErrorNumber extends RefinedType[Int, ErrorNumberConstraint]
+    object ErrorNumber extends RefinedSubtype[Int, ErrorNumberConstraint]
 end PillarsError
