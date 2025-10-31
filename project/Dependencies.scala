@@ -12,7 +12,7 @@ object versions {
     val flyway           = "11.15.0"
     val fs2              = "3.12.2"
     val fs2Rabbit        = "5.2.0"
-    val http4s           = "0.23.32"
+    val http4s           = "0.23.33"
     val ip4s             = "3.7.0"
     val iron             = "3.2.0"
     val literally        = "1.2.0"
