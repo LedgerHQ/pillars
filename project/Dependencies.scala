@@ -9,10 +9,10 @@ object versions {
     val circeYaml        = "0.16.1"
     val decline          = "2.5.0"
     val doobie           = "1.0.0-RC10"
-    val flyway           = "11.13.3"
+    val flyway           = "11.15.0"
     val fs2              = "3.12.2"
     val fs2Rabbit        = "5.2.0"
-    val http4s           = "0.23.32"
+    val http4s           = "0.23.33"
     val ip4s             = "3.7.0"
     val iron             = "3.2.0"
     val literally        = "1.2.0"
@@ -21,7 +21,7 @@ object versions {
     val rediculous       = "0.5.1"
     val scribe           = "3.17.0"
     val skunk            = "1.0.0-M11"
-    val tapir            = "1.11.50"
+    val tapir            = "1.12.1"
     val testContainers   = "0.43.6"
 
     object munit {
