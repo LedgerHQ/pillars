@@ -9,7 +9,7 @@ object versions {
     val circeYaml        = "0.16.1"
     val decline          = "2.6.2"
     val doobie           = "1.0.0-RC10"
-    val flyway           = "11.13.3"
+    val flyway           = "11.20.3"
     val fs2              = "3.13.0"
     val fs2Rabbit        = "5.2.0"
     val http4s           = "0.23.32"
