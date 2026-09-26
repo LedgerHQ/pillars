@@ -19,7 +19,7 @@ object versions {
     val otel4s           = "0.13.2"
     val postgresqlDriver = "42.7.8"
     val rediculous       = "0.5.1"
-    val scribe           = "3.17.0"
+    val scribe           = "3.19.0"
     val skunk            = "1.0.0-M11"
     val tapir            = "1.11.50"
     val testContainers   = "0.43.6"
